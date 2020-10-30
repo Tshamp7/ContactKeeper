@@ -42,6 +42,7 @@ const AuthState = (props) => {
       dispatch({ type: AUTH_ERROR });
     }
   };
+
   // Register User
   const register = async (formData) => {
     const config = {
@@ -66,6 +67,7 @@ const AuthState = (props) => {
       });
     }
   };
+
   // Login User
   const login = async (formData) => {
     const config = {
@@ -90,9 +92,12 @@ const AuthState = (props) => {
       });
     }
   };
+
   // Logout
   const logout = () => {
-    console.log("logout user");
+    dispatch({
+      type: LOGOUT,
+    });
   };
 
   // Clear Errors

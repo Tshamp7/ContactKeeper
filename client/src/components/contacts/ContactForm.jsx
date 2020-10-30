@@ -27,11 +27,11 @@ const ContactForm = () => {
 
   const { name, email, phone, type } = contact;
 
-  const onChange = e => {
+  const onChange = (e) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (current === null) {
       addContact(contact);
@@ -52,57 +52,58 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h2 className='text-primary'>
+      <h2 className="text-primary">
         {current === null ? "Add Contact" : "Edit Contact"}
       </h2>
       <input
-        type='text'
-        placeholder='name'
-        name='name'
+        type="text"
+        placeholder="name"
+        name="name"
         value={name}
         onChange={onChange}
       />
       <input
-        type='text'
-        placeholder='email'
-        name='email'
+        type="text"
+        placeholder="email"
+        name="email"
         value={email}
         onChange={onChange}
       />
       <input
-        type='text'
-        placeholder='phone'
-        name='phone'
+        type="text"
+        placeholder="phone"
+        name="phone"
         value={phone}
         onChange={onChange}
       />
       <h5>Contact Type</h5>
       <input
-        type='radio'
-        name='type'
-        value='personal'
+        type="radio"
+        name="type"
+        value="personal"
         checked={type === "personal"}
+        onChange={onChange}
       />
       Personal
       <input
-        type='radio'
-        name='type'
-        value='professional'
+        type="radio"
+        name="type"
+        value="professional"
         checked={type === "professional"}
         onChange={onChange}
       />{" "}
       Professional
       <div>
         <input
-          type='submit'
+          type="submit"
           value={current === null ? "Add Contact" : "Update Contact"}
-          className='btn btn-primary btn-block'
+          className="btn btn-primary btn-block"
           onChange={onChange}
         />
       </div>
       {current && (
         <div>
-          <button className='btn btn-light btn-block' onClick={clearAll}>
+          <button className="btn btn-light btn-block" onClick={clearAll}>
             Clear
           </button>
         </div>
