@@ -9,9 +9,10 @@ connectDB();
 // init middleware
 app.use(express.json({ extended: false }));
 
-// app.get("/", (req, res) =>
-//   res.send({ msg: "Welcome to the Contact Keeper API" })
-// );
+// Define routes
+app.use("/api/users", require("./routes/users"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/contacts", require("./routes/contacts"));
 
 // Serve static assets in production
 if (process.env.NODE_ENV === "production") {
@@ -21,11 +22,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   );
 }
-
-// Define routes
-app.use("/api/users", require("./routes/users"));
-app.use("/api/auth", require("./routes/auth"));
-app.use("/api/contacts", require("./routes/contacts"));
 
 const PORT = process.env.PORT || 5000;
 
