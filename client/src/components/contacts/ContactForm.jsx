@@ -1,9 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
+import AlertContext from "../../context/alert/alertContext";
 import ContactContext from "../../context/contact/contactContext";
 
 const ContactForm = () => {
+  const alertContext = useContext(AlertContext);
+  const { setAlert } = alertContext;
+
   const contactContext = useContext(ContactContext);
   const { addContact, current, clearCurrent, updateContact } = contactContext;
+
   const resetContact = {
     name: "",
     email: "",
@@ -17,6 +22,7 @@ const ContactForm = () => {
     } else {
       setContact(resetContact);
     }
+    //eslint-disable-next-line
   }, [contactContext, current]);
 
   const [contact, setContact] = useState({
@@ -34,6 +40,9 @@ const ContactForm = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (name === "") {
+      setAlert("Name can't be blank.", "error");
+    }
     if (current === null) {
       addContact(contact);
       clearCurrent();
